@@ -95,7 +95,7 @@ def ask(score):
                 mood = "depressed"
         elif choiceAsk == 5:
             len = talk_len -1
-            talk(score)
+            talk(score, subPoints)
         else:
             print("Incorrect") 
             ask(score)
@@ -315,6 +315,8 @@ def store(score):
     while len != shopLen:
         item = input("What do you want to buy?:")
         shopList = shopList.append(item)
+        len += 1
+    print(f"You had a fun time buying {shopList}")
     score += 5
     go(score)
 def woods(score):
@@ -413,6 +415,14 @@ def advent3(score):
         advent3(score)
 
 mainChoice(score)
+
+if score > 50:
+    print("Great Job! Game Ended")
+elif score >-10:
+    print("You did okay! Game Ended")
+elif score <-10:
+    print("Do better next time! Game Ended")
+
 #choice = int(input("Which one do you?\n (1) (2) (3) (4) (5):\n"))
 
 #if == 1:
