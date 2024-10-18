@@ -3,6 +3,7 @@
 import random as r
 subPoints = 0
 score = 0
+full = 0
 name = input("What is your friend's name?:")
 
 def mainChoice(score):
@@ -177,27 +178,29 @@ def food(score):
         if pay == 1:
             score += 5
             score -= 7
-        else:
+        elif pay == 2:
             score += 1
             score -= 7
         print("The pizza looks super fresh!")
         pizzaEat(score)
-    if choicePizza == 2:
+        do(score)
+    elif choicePizza == 2:
         pay = int(input("Do you pay(1) or them(2)?: "))
         if pay == 1:
             score += 3
             score -= 5
-        else:
+        elif pay == 2:
             score -= 5
         pizzaEat(score)
-    if choicePizza == 3 or choicePizza == 4:
+        do(score)
+    elif choicePizza == 3 or choicePizza == 4:
         pizzaEat(score)
+        do(score)
     else:
         print("Incorrect")
         food(score)
-    do(score)
 def pizzaEat(score):
-    full = full
+    global full
     if full == 1:
         print(f"{name} is full.")
     else:
@@ -227,8 +230,8 @@ def game(score):
             elif pokePoints >= 5:
                 print("You are getting bored")
         elif choiceGame == 5:
-            len = do_len -1
             do(score)
+            break
         else:
             print("Incorrect") 
             game(score)
@@ -288,6 +291,7 @@ def fight(score):
 
     do(score)
 
+
 def go(score):
     choiceGo = int(input("Where do you want to go?\n Movie Theater(1) Store(2) Woods(3) Space(4) Leave(5):\n"))
     if choiceGo == 1:
@@ -295,7 +299,7 @@ def go(score):
     elif choiceGo == 2:
         store(score)
     elif choiceGo == 3:
-        woods(score)
+        woods()
     elif choiceGo == 4:
         space(score)
     elif choiceGo == 5:
@@ -310,6 +314,7 @@ def movie(score):
     go(score)
 def store(score):
     shopList = []
+    len = 0
     shopLen = int(input("How many items do you want to buy?:"))
     score -= shopLen
     while len != shopLen:
@@ -319,7 +324,7 @@ def store(score):
     print(f"You had a fun time buying {shopList}")
     score += 5
     go(score)
-def woods(score):
+def woods():
     print(f"You and {name} go into the woods and never come back...")
 def space(score):
     score += 10000000
@@ -359,10 +364,10 @@ def advent1(score):
         randomA12 = r.randrange(0,2)
         if randomA12 == 0:
             score -= -100
-            print("Their trained forces destroy you")
+            print("You get caught!")
         elif randomA12 == 1:
             score += 20
-            print("They are weak enough and so you win!")
+            print("You take over the castle!")
         mainChoice(score)
     elif choiceA1 == 3:
         score += 20
