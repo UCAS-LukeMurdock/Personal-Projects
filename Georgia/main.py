@@ -16,11 +16,9 @@ def mainChoice(score):
     elif mChoice == 4:
         advent(score)    
     elif mChoice == 5:
-        score = str(score)
-        print("Your score is " + score + "\nBye!")
+        print("Your score is " + str(score) + "\nBye!")
     elif mChoice == 6:
-        score = str(score)
-        print("Your score is " + score)
+        print("Your score is " + str(score))
         mainChoice(score)
     else:
         print("Incorrect")
@@ -108,7 +106,6 @@ def ask(score):
             len = talk_len - 1  
         len += 1
     talk(score, subPoints)
-
 def sub(score, subPoints):
     if subPoints > 2:
         score -= 1
@@ -124,7 +121,7 @@ def sub(score, subPoints):
         elif choiceSub == 2:
             subPoints += 1
             score += 2
-            print(f"{name} has 1,000 siblings. They likes most of them")
+            print(f"{name} has 1,000 siblings. They like most of them")
             sub(score, subPoints)
         elif choiceSub == 3:
             subPoints += 1
@@ -147,7 +144,6 @@ def sub(score, subPoints):
             subPoints += 1
             print("Incorrect") 
             sub(score, subPoints)
-
 def poli(score):
     score -= 100000000
     print(f"{name} and you get into a heated debate where you both end up unsatisfied. You and {name} hate politics.")
@@ -163,11 +159,11 @@ def do(score):
     elif choiceDo == 2:
         game(score)
     elif choiceDo == 3:
-        #book(score)
-        pass
+        score += 2
+        print("You have a fun time reading a book!")
+        do(score)
     elif choiceDo == 4:
-        #fight(score)
-        pass
+        fight(score)
     elif choiceDo == 5:
         mainChoice(score)
     else:
@@ -179,7 +175,7 @@ def food(score):
     if choicePizza == 1:
         pay = int(input("Do you pay(1) or them(2)?: "))
         if pay == 1:
-            score += 7
+            score += 5
             score -= 7
         else:
             score += 1
@@ -189,21 +185,25 @@ def food(score):
     if choicePizza == 2:
         pay = int(input("Do you pay(1) or them(2)?: "))
         if pay == 1:
-            score += 5
+            score += 3
             score -= 5
         else:
             score -= 5
         pizzaEat(score)
-    if choicePizza == 3 or 4:
-        pizzaEat()
-def pizzaEat():
+    if choicePizza == 3 or choicePizza == 4:
+        pizzaEat(score)
+    else:
+        print("Incorrect")
+        food(score)
+    do(score)
+def pizzaEat(score):
+    full = full
     if full == 1:
         print(f"{name} is full.")
     else:
         print("You eat the yummy pizza!")
         score += 15
         full += 1
-
 
 def game(score):
     do_len = int(input("How many games?: "))
@@ -213,12 +213,9 @@ def game(score):
     while len != do_len:
         choiceGame = int(input("Which game do you want to play?\n Monopoly(1) Chess(2) MarioKart(3) Pokemon(4) Leave(5):\n"))
             #Competitive Game
-        if choiceGame == 1:
+        if choiceGame == 1 or choiceGame == 2 or choiceGame == 3:
             competitive(score)
-        elif choiceGame == 2:
-            competitive(score)
-        elif choiceGame == 3:
-            competitive(score)
+
         #Pokemon Playing points 
         elif choiceGame == 4:
             score += 1
@@ -248,42 +245,174 @@ def competitive(score):
         score -= 1
         print("Oh no! You lost!")
 
+def fight(score):
+    friend = 0
+    while friend <= 20:
+        block = 0
+        rand = r.randrange(0,2)
+        rand2 = r.randrange(0,3)
+        hit = int(input("Punch(1) Kick(2) Dodge(3) Stop(4):"))
+        if hit == 1:
+            if fBlock == 1:
+                print("Your friend blocked!")
+            else:
+                friend += 1
+        elif hit == 2:
+            if fBlock == 1:
+                print("Your friend blocked!")
+            else:
+                friend += 2
+        elif hit == 3:
+            block = 1
+        elif hit == 4:
+            break
+        fBlock = 0
+        if rand == 0:
+            print("Please Stop!")
+        elif rand == 1:
+            if block == 1:
+                score += 2
+                print("You dodged your friend!")
+            else:
+                if rand2 == 0:
+                    score -= 1
+                    print("You got punched!")
+                elif rand2 == 1:
+                    score -= 2
+                    print("You got kicked!")
+                elif rand2 == 2:
+                    fBlock = 1
+    print("The fight ended")
+    do(score)
+                
+
+    do(score)
 
 def go(score):
-    choiceGo = int(input("Where do you want to go?\n (1) (2) (3) (4) (5):\n"))
+    choiceGo = int(input("Where do you want to go?\n Movie Theater(1) Store(2) Woods(3) Space(4) Leave(5):\n"))
     if choiceGo == 1:
-        (score)
+        movie(score)
     elif choiceGo == 2:
-        (score)
+        store(score)
     elif choiceGo == 3:
-        (score)
+        woods(score)
     elif choiceGo == 4:
-        (score)
+        space(score)
     elif choiceGo == 5:
         mainChoice(score)
     else:
         print("Incorrect") 
         go(score)
 
+def movie(score):
+    score += 2
+    print("You hada a great time watching a movie about pizza")
+    go(score)
+def store(score):
+    shopList = []
+    shopLen = int(input("How many items do you want to buy?:"))
+    score -= shopLen
+    while len != shopLen:
+        item = input("What do you want to buy?:")
+        shopList = shopList.append(item)
+    score += 5
+    go(score)
+def woods(score):
+    print(f"You and {name} go into the woods and never come back...")
+def space(score):
+    score += 10000000
+    print(f"You and {name} colonize a planet and become leaders of a grand government!")
+    print(f"Your score is {score}")
 
 def advent(score):
-    choiceAdvent = int(input("Which adventure do you want to go on?\n (1) (2) (3) (4) (5):\n"))
+    choiceAdvent = int(input("Which adventure do you want to go on?\n Capital(1) Ocean(2) Tundra(3) Leave(4)\n"))
     if choiceAdvent == 1:
-        (score)
+        advent1(score)
     elif choiceAdvent == 2:
-        (score)
+        advent2(score)
     elif choiceAdvent == 3:
-        (score)
+        advent3(score)
     elif choiceAdvent == 4:
-        (score)
-    elif choiceAdvent == 5:
         mainChoice(score)
     else:
         print("Incorrect") 
         advent(score)
+def advent1(score):
+    choiceA1 = int(input("The Capital of Auoruoa is located in the middle of a the gas planet, Aurua. The castle is the perfect sphere of the core. The gravity levels are high but somehow it is livable.\nWhat do you do?\n Seige The Castle(1) Sneak Into The Castle(2) Live a normal life in the Capitol(3) Leave(4) :\n"))
+    
+    if choiceA1 == 1:
+        choiceA11 = int(input("Which one do you?\n Try to Break in Early(1) Try to Break in later(2) Wait Till They Give Up(3):\n"))
+        if choiceA11 == 1:
+            score -= -100
+            print("Their trained forces destroy you")
+        elif choiceA11 == 2:
+            score += 20
+            print("They are weak enough and so you win!")
+        elif choiceA11 == 3:
+            score -= 100
+            print("You siege the castle for months on end. Eventually you run out of supplies on this forigen planet. You get destroyed by the Auorouaian King.")
+        mainChoice(score)
+
+    elif choiceA1 == 2:
+        randomA12 = r.randrange(0,2)
+        if randomA12 == 0:
+            score -= -100
+            print("Their trained forces destroy you")
+        elif randomA12 == 1:
+            score += 20
+            print("They are weak enough and so you win!")
+        mainChoice(score)
+    elif choiceA1 == 3:
+        score += 20
+        print("You live here in harmony")
+        print(f"Your score is {score}")
+    elif choiceA1 == 4:
+        advent(score)
+    else:
+        print("Incorrect") 
+        advent1(score)
+def advent2(score):
+    print("The Ocean is endless, omniprescent, and all consuming.")
+    choiceA2 = int(input("Which one do you do?\n Sail as Far as You can(1) Sail along the coast(2) Fish(3) Leave(4):\n"))
+    if choiceA2 == 1:
+        choiceA21 = int(input("You meet a pirate ship. Fight(1) Join(2) Escape(3):\n"))
+        if choiceA21 == 1:
+            score -= -100
+            print("They sink your ship")
+            mainChoice(score)
+        elif choiceA21 == 2:
+            score += 20
+            print("You join them and gain soom bounty")
+            mainChoice(score)
+        elif choiceA21 == 3:
+            score -= 100
+            print("You get lost in the endless ocean")
+            print(f"Score: {score}")
+    elif choiceA2 == 2:
+        print("Nothing happens")
+        mainChoice(score)
+    elif choiceA2 == 3:
+        score += 20
+        print("You fish prosperily until the end of your days.")
+        print(f"Your score is {score}")
+    elif choiceA2 == 4:
+        advent(score)
+    else:
+        print("Incorrect") 
+        advent2(score)
+def advent3(score):
+    choiceA3 = int(input("Which one do you do?\n Journey to the Center(1) Make Camp(2) Split Up and Scout(3) Leave(4):\n"))
+    if choiceA3 == 1 or choiceA3 == 2 or choiceA3 == 3:
+        score -= 30
+        print("You freeze")
+        print(f"Score: {score}")
+    elif choiceA3 == 4:
+        advent(score)
+    else:
+        print("Incorrect") 
+        advent3(score)
 
 mainChoice(score)
-
 #choice = int(input("Which one do you?\n (1) (2) (3) (4) (5):\n"))
 
 #if == 1:
