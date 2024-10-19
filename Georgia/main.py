@@ -7,7 +7,7 @@ full = 0
 name = input("What is your friend's name?:")
 
 def mainChoice(score):
-    mChoice = int(input(f"What do you want to do with {name}?\n  1. Talk with them\n  2. Do things with them\n  3. Go places with them\n  4. Adventure\n  5. Leave them\n  6. Score\n"))
+    mChoice = int(input(f"\nWhat do you want to do with {name}?\n  1. Talk with them\n  2. Do things with them\n  3. Go places with them\n  4. Adventure\n  5. Leave them\n  6. Score\n"))
     if mChoice == 1:
         talk(score, subPoints)
     elif mChoice == 2:
@@ -250,6 +250,7 @@ def competitive(score):
 
 def fight(score):
     friend = 0
+    fBlock = 0
     while friend <= 20:
         block = 0
         rand = r.randrange(0,2)
@@ -257,13 +258,15 @@ def fight(score):
         hit = int(input("Punch(1) Kick(2) Dodge(3) Stop(4):"))
         if hit == 1:
             if fBlock == 1:
-                print("Your friend blocked!")
+                print("You got blocked!")
             else:
                 friend += 1
+                print("You successfully punched")
         elif hit == 2:
             if fBlock == 1:
-                print("Your friend blocked!")
+                print("You got blocked!")
             else:
+                print("You successfully kicked")
                 friend += 2
         elif hit == 3:
             block = 1
@@ -271,11 +274,11 @@ def fight(score):
             break
         fBlock = 0
         if rand == 0:
-            print("Please Stop!")
+            print("Nothing happens")
         elif rand == 1:
             if block == 1:
                 score += 2
-                print("You dodged your friend!")
+                print("You successfully dodge!")
             else:
                 if rand2 == 0:
                     score -= 1
@@ -285,7 +288,10 @@ def fight(score):
                     print("You got kicked!")
                 elif rand2 == 2:
                     fBlock = 1
-    print("The fight ended")
+    if friend >= 20:
+        print("You Won!")
+    else:
+        print("The fight ended")
     do(score)
                 
 
@@ -319,7 +325,8 @@ def store(score):
     score -= shopLen
     while len != shopLen:
         item = input("What do you want to buy?:")
-        shopList = shopList.append(item)
+        shopList.append(item)
+        print(shopList)
         len += 1
     print(f"You had a fun time buying {shopList}")
     score += 5
@@ -421,11 +428,11 @@ def advent3(score):
 
 mainChoice(score)
 
-if score > 50:
+if score >= 50:
     print("Great Job! Game Ended")
-elif score >-10:
+elif score >= -10:
     print("You did okay! Game Ended")
-elif score <-10:
+elif score < -10:
     print("Do better next time! Game Ended")
 
 #choice = int(input("Which one do you?\n (1) (2) (3) (4) (5):\n"))

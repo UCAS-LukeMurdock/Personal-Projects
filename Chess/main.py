@@ -86,25 +86,25 @@ def action1(currentMap, Token):
 def action2(currentMap, Token):
     return currentMap.replace("2", Token)
 def action3(currentMap, Token):
-    zMap = currentMap.replace("3", Token)
-    return zMap
+    return currentMap.replace("3", Token)
+    
 def action4(currentMap, Token):
-    currentMap = currentMap.replace("4", Token)
+    currentMap.replace("4", Token)
     return currentMap
 def action5(currentMap, Token):
-    currentMap = currentMap.replace("5", Token)
+    currentMap.replace("5", Token)
     return currentMap
 def action6(currentMap, Token):
-    currentMap = currentMap.replace("6", Token)
+    currentMap.replace("6", Token)
     return currentMap
 def action7(currentMap, Token):
-    currentMap = currentMap.replace("7", Token)
+    currentMap.replace("7", Token)
     return currentMap
 def action8(currentMap, Token):
-    currentMap = currentMap.replace("8", Token)
+    currentMap.replace("8", Token)
     return currentMap
 def action9(currentMap, Token):
-    currentMap = currentMap.replace("9", Token)
+    currentMap.replace("9", Token)
     return currentMap
 
 def game(userToken, cToken):
