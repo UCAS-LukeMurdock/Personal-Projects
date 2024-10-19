@@ -316,7 +316,7 @@ def go(score):
 
 def movie(score):
     score += 2
-    print("You hada a great time watching a movie about pizza")
+    print("You had a great time watching a movie about pizza")
     go(score)
 def store(score):
     shopList = []
